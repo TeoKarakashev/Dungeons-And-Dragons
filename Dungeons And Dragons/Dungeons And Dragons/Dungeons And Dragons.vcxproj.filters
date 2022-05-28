@@ -21,20 +21,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="String.h">
-      <Filter>Helpers\String</Filter>
-    </ClInclude>
-    <ClInclude Include="ArrayList.hpp">
-      <Filter>Helpers\ArrayList</Filter>
-    </ClInclude>
-    <ClInclude Include="Map.hpp">
-      <Filter>Helpers\Map</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="String.cpp">
-      <Filter>Helpers\String</Filter>
-    </ClCompile>
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
 </Project>
