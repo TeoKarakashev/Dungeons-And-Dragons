@@ -1,22 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Helpers">
+      <UniqueIdentifier>{dfcf80bc-e61b-44f4-bacd-56e460b84214}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="Helpers\String">
+      <UniqueIdentifier>{b06857d5-f181-4af0-82f5-8a7b4176cfb3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Helpers\ArrayList">
+      <UniqueIdentifier>{3982a5f0-b2b8-4e4b-8c59-5fb237abd5ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers\Map">
+      <UniqueIdentifier>{8b5c058c-c841-433a-b8f8-07de35dec164}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities">
+      <UniqueIdentifier>{28e3fbe8-0ba4-4cde-9b00-c3a6a333781e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities\Maze">
+      <UniqueIdentifier>{1747b24c-b70e-4181-bf7f-801bb291f7b1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source.cpp">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="String.h">
+      <Filter>Helpers\String</Filter>
+    </ClInclude>
+    <ClInclude Include="ArrayList.hpp">
+      <Filter>Helpers\ArrayList</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.hpp">
+      <Filter>Helpers\Map</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="String.cpp">
+      <Filter>Helpers\String</Filter>
     </ClCompile>
+    <ClCompile Include="Source.cpp" />
   </ItemGroup>
 </Project>
