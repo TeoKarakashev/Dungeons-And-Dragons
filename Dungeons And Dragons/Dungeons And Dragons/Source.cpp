@@ -1,8 +1,8 @@
-#include "Helpers/ArrayList/ArrayList.hpp"
-#include "Helpers/String/String.h"
+#include <iostream>
+#include "Maze/MazeGenerator/MazeGenerator.h"
 
 int main() {
-	ArrayList<int> arr;
-	arr.add(1);
-	std::cout << arr[0];
+	
+	MazeGenerator ma;
+	ma.generateMaze(100, 77);
 }

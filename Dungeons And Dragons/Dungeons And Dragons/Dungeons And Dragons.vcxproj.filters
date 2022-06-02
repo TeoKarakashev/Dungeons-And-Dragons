@@ -22,5 +22,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Maze\MazeGenerator\MazeGenerator.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Maze\MazeGenerator\MazeGenerator.h" />
+    <ClInclude Include="Helpers\Pair\Pair.hpp" />
   </ItemGroup>
 </Project>
