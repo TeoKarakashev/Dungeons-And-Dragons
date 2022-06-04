@@ -1,8 +1,10 @@
 #include <iostream>
-#include "Maze/MazeGenerator/MazeGenerator.h"
+#include "Maze/Maze.h"
 
 int main() {
 	
-	MazeGenerator ma;
-	ma.generateMaze(100, 77);
+	Maze ma;
+	ma.generateMaze(23, 13);
+	ma.visualizeMaze();
+
 }

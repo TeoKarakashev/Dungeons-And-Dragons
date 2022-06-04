@@ -23,9 +23,15 @@
   <ItemGroup>
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Maze\MazeGenerator\MazeGenerator.cpp" />
+    <ClCompile Include="Helpers\String\String.cpp" />
+    <ClCompile Include="Maze\Maze.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Maze\MazeGenerator\MazeGenerator.h" />
     <ClInclude Include="Helpers\Pair\Pair.hpp" />
+    <ClInclude Include="Maze\Maze.h" />
+    <ClInclude Include="Helpers\String\String.h" />
+    <ClInclude Include="Helpers\Map\Map.hpp" />
+    <ClInclude Include="Helpers\ArrayList\ArrayList.hpp" />
   </ItemGroup>
 </Project>

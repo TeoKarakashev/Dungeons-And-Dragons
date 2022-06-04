@@ -21,7 +21,7 @@ int MazeGenerator::IsInBounds(int x, int y)
 	if (y < 0 || y >= gridHeight) return false;
 	return true;
 }
-// This is the recursive function we will code in the next project
+
 void MazeGenerator::Visit(int x, int y)
 {
 	// Starting at the given index, recursively visits every direction in a
@@ -71,17 +71,20 @@ void MazeGenerator::Visit(int x, int y)
 		}
 	}
 }
-void MazeGenerator::PrintGrid()
-{
-	// Displays the finished maze to the screen.
-	for (int y = 0; y < gridHeight; ++y)
-	{
-		for (int x = 0; x < gridWidth; ++x)
-		{
-			std::cout << grid[XYToIndex(x, y)];
-		}
-		std::cout << std::endl;
+
+
+char** MazeGenerator::gridToMatrix() {
+
+	char** matrix = new char*[gridHeight];
+	for (int y = 0; y < gridHeight; ++y) {
+		matrix[y] = new char[gridWidth];
 	}
+	for (int y = 0; y < gridHeight; ++y) {
+		for (int x = 0; x < gridWidth; ++x) {
+			matrix[y][x] = grid[XYToIndex(x, y)];
+		}
+	}
+	return matrix;
 }
 
 void MazeGenerator::free() {
@@ -117,14 +120,15 @@ MazeGenerator::~MazeGenerator() {
 	free();
 }
 
-void MazeGenerator::generateMaze(int width, int height) {
+char** MazeGenerator::generateMaze(int width, int height) {
 	this->gridWidth = width;
 	this->gridHeight = height;
 	grid = new char[gridWidth * gridHeight];
-	srand(time(0)); 
+	srand(time(0));
 	ResetGrid();
 	Visit(1, 1);
-	//PrintGrid();
+	return gridToMatrix();
+
 }
 
 

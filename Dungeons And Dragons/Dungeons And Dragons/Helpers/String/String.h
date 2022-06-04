@@ -1,6 +1,6 @@
 #pragma once
 #include<iostream>
-//! Helper class that helps working with Strin
+//! Helper class that helps working with String
 class String {
 	//! Storage for all the chars in the String
 	char* vals;

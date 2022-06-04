@@ -19,11 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Helpers\String\String.cpp" />
+    <ClCompile Include="Maze\Maze.cpp" />
     <ClCompile Include="Maze\MazeGenerator\MazeGenerator.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Helpers\ArrayList\ArrayList.hpp" />
+    <ClInclude Include="Helpers\Map\Map.hpp" />
     <ClInclude Include="Helpers\Pair\Pair.hpp" />
+    <ClInclude Include="Helpers\String\String.h" />
+    <ClInclude Include="Maze\Maze.h" />
     <ClInclude Include="Maze\MazeGenerator\MazeGenerator.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

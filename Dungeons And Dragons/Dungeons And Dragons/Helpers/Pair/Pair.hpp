@@ -1,54 +1,54 @@
 //Taken from https://github.com/stoychoX/Alice-in-wonderland/
 #pragma once
 template<class T, class U>
-class pair {
+class Pair {
 public:
 	T first;
 	U second;
 
 	//construct:
-	pair();
-	pair(const T& _first, const U& _second);
-	pair(const pair<T, U>& other);
+	Pair();
+	Pair(const T& _first, const U& _second);
+	Pair(const Pair<T, U>& other);
 
 	//operator= && operator==
-	pair& operator=(const pair<T, U>& other);
-	bool operator==(const  pair<T, U>& other);
+	Pair& operator=(const Pair<T, U>& other);
+	bool operator==(const  Pair<T, U>& other);
 
 	//helpers:
-	pair make_pair(const T& _valFirst, const U& _valSecond) const;
+	Pair make_pair(const T& _valFirst, const U& _valSecond) const;
 
 	const T c_first() const;
 	const U c_second() const;
 
 	//destruct:
-	~pair();
+	~Pair();
 private:
-	void copy(const pair<T, U>& other);
+	void copy(const Pair<T, U>& other);
 };
 
 template<class T, class U>
-inline pair<T, U>::~pair() {}
+inline Pair<T, U>::~Pair() {}
 
 template<class T, class U>
-inline void pair<T, U>::copy(const pair<T, U>& other) {
+inline void Pair<T, U>::copy(const Pair<T, U>& other) {
 	this->first = other.first;
 	this->second = other.second;
 }
 
 template<class T, class U>
-inline pair<T, U>::pair() : first(T()), second(U()) {}
+inline Pair<T, U>::Pair() : first(T()), second(U()) {}
 
 template<class T, class U>
-inline pair<T, U>::pair(const T& _first, const U& _second) : first(_first), second(_second) {}
+inline Pair<T, U>::Pair(const T& _first, const U& _second) : first(_first), second(_second) {}
 
 template<class T, class U>
-inline pair<T, U>::pair(const pair<T, U>& other) {
+inline Pair<T, U>::Pair(const Pair<T, U>& other) {
 	copy(other);
 }
 
 template<class T, class U>
-inline pair<T, U>& pair<T, U>::operator=(const pair<T, U>& other)
+inline Pair<T, U>& Pair<T, U>::operator=(const Pair<T, U>& other)
 {
 	if (this != &other)
 		copy(other);
@@ -57,21 +57,21 @@ inline pair<T, U>& pair<T, U>::operator=(const pair<T, U>& other)
 }
 
 template<class T, class U>
-inline bool pair<T, U>::operator==(const pair<T, U>& other) {
+inline bool Pair<T, U>::operator==(const Pair<T, U>& other) {
 	return ((this->first == other.first) && (this->second == other.second));
 }
 
 template<class T, class U>
-inline pair<T, U> pair<T, U>::make_pair(const T& _valFirst, const U& _valSecond) const {
-	return pair(_valFirst, _valSecond);
+inline Pair<T, U> Pair<T, U>::make_pair(const T& _valFirst, const U& _valSecond) const {
+	return Pair(_valFirst, _valSecond);
 }
 
 template<class T, class U>
-inline const T pair<T, U>::c_first() const {
+inline const T Pair<T, U>::c_first() const {
 	return this->first;
 }
 
 template<class T, class U>
-inline const U pair<T, U>::c_second() const {
+inline const U Pair<T, U>::c_second() const {
 	return this->second;
 }
