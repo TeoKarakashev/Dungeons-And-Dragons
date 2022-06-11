@@ -1,4 +1,5 @@
-﻿#include "MazeGenerator/MazeGenerator.h"
+﻿#pragma once
+#include "MazeGenerator/MazeGenerator.h"
 #include "../Helpers/Pair/Pair.hpp"
 #include "../Helpers/ArrayList/ArrayList.hpp"
 class Maze {

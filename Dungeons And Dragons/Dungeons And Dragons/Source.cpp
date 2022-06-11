@@ -1,10 +1,9 @@
 #include <iostream>
-#include "Maze/Maze.h"
+#include "Engine/Engine.h"
 
 int main() {
 	
-	Maze ma;
-	ma.generateMaze(23, 13);
-	ma.visualizeMaze();
+	Engine engine;
+	engine.run();
 
 }
