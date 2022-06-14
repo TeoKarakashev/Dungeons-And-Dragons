@@ -13,4 +13,6 @@ public:
 
 	void setName(const String& name);
 	void setPercent(size_t percent);
+
+	virtual ~Item() = default;
 };

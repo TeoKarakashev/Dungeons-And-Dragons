@@ -17,6 +17,7 @@ public:
 
 	//helpers:
 	Pair make_pair(const T& _valFirst, const U& _valSecond) const;
+	void set_pair(const T& _valFirst, const U& _valSecond) ;
 
 	const T c_first() const;
 	const U c_second() const;
@@ -64,6 +65,12 @@ inline bool Pair<T, U>::operator==(const Pair<T, U>& other) {
 template<class T, class U>
 inline Pair<T, U> Pair<T, U>::make_pair(const T& _valFirst, const U& _valSecond) const {
 	return Pair(_valFirst, _valSecond);
+}
+
+template<class T, class U>
+inline void Pair<T, U>::set_pair(const T& _valFirst, const U& _valSecond)  {
+	this->first = _valFirst;
+	this->second = _valSecond;
 }
 
 template<class T, class U>

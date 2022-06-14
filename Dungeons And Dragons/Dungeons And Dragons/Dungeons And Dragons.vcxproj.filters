@@ -25,13 +25,23 @@
     <ClCompile Include="Maze\MazeGenerator\MazeGenerator.cpp" />
     <ClCompile Include="Helpers\String\String.cpp" />
     <ClCompile Include="Maze\Maze.cpp" />
+    <ClCompile Include="Engine\Engine.cpp" />
+    <ClCompile Include="Entities\Hero\Inventory\Inventory.cpp" />
+    <ClCompile Include="Entities\Item\Item.cpp" />
+    <ClCompile Include="Entities\Hero\Hero.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Maze\MazeGenerator\MazeGenerator.h" />
     <ClInclude Include="Helpers\Pair\Pair.hpp" />
     <ClInclude Include="Maze\Maze.h" />
     <ClInclude Include="Helpers\String\String.h" />
-    <ClInclude Include="Helpers\Map\Map.hpp" />
     <ClInclude Include="Helpers\ArrayList\ArrayList.hpp" />
+    <ClInclude Include="Engine\Engine.h" />
+    <ClInclude Include="Helpers\Optional\Optional.hpp" />
+    <ClInclude Include="Entities\Monster\Monster.h" />
+    <ClInclude Include="Entities\Hero\Inventory\Inventory.h" />
+    <ClInclude Include="Entities\Item\Item.h" />
+    <ClInclude Include="Entities\Item\Weapon\Weapon.h" />
+    <ClInclude Include="Entities\Hero\Hero.h" />
   </ItemGroup>
 </Project>
