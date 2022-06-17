@@ -1,5 +1,20 @@
 #include "Hero.h"
 
+Hero::Hero(size_t power, size_t mana, size_t health) {
+	this->power = power;
+	this->mana = mana;
+	this->health = health;
+	this->level = 1;
+}
+
+Hero::Hero(size_t power, size_t mana, size_t health, size_t level, const Inventory& inventory /*const String& representation*/) {
+	this->power = power;
+	this->mana = mana;
+	this->health = health;
+	this->level = level;
+	this->inventory = inventory;
+}
+
 void Hero::setPower(size_t power) {
 	this->power = power;
 }
@@ -28,9 +43,9 @@ void Hero::setSpell(const Spell& spell) {
 	this->inventory.setSpell(spell);
 }
 
-void Hero::setRepresentation(const String& path) {
-	this->representation = path;
-}
+//void Hero::setRepresentation(const String& path) {
+//	this->representation = path;
+//}
 
 size_t Hero::getPower() const
 {
@@ -64,6 +79,6 @@ const Spell& Hero::getSpell() const {
 	return inventory.getSpell();
 }
 
-const String& Hero::getRepresentation() const {
-	return representation;
-}
+//const String& Hero::getRepresentation() const {
+//	return representation;
+//}

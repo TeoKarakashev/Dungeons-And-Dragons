@@ -2,4 +2,6 @@
 #include "../Item.h"
 class Spell : public Item {
 
+public:
+	Spell(const String& name, size_t percentage);
 };

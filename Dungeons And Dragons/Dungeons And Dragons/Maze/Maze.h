@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "MazeGenerator/MazeGenerator.h"
+#include "../Entities/Hero/HeroContainer/HeroContainer.h"
 #include "../Helpers/Pair/Pair.hpp"
 #include "../Helpers/ArrayList/ArrayList.hpp"
 #define WIDTH_INCREASE 5
@@ -12,6 +13,7 @@ class Maze {
 	char** grid;
 	char previousStateOfCurrentHeroPosition;
 
+	HeroContainer heroEntity;
 	Pair<int, int> heroCoordinates;
 	ArrayList<Pair<int, int>> treasuresCoordiantes;
 	ArrayList<Pair<int, int>> monstersCoordiantes;
@@ -29,7 +31,8 @@ public:
 	Maze& operator=(const Maze& other);
 	~Maze();
 
-	bool isOnTheExit();
+	void setHero(const Hero& hero);
+	bool isOnTheExit() const;
 	void generateLevel();
 	const Pair<int, int> getHeroCords() const;
 	bool moveHero(int x, int y);

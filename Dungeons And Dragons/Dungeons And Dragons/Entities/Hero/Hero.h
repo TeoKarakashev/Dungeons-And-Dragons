@@ -9,10 +9,13 @@ class Hero {
 	size_t health;
 	size_t level;
 	Inventory inventory;
-	String representation;
+	//String representation;
 
 public:
 
+	Hero(size_t power, size_t mana, size_t health);
+	Hero(size_t power, size_t mana, size_t health, size_t level,
+		const Inventory& inventory /*const String& representation*/);
 	virtual ~Hero() = default;
 
 	void setPower(size_t power);
@@ -22,7 +25,7 @@ public:
 	void setWeapon(const Weapon& weapon);
 	void setArmour(const Armour& armour);
 	void setSpell(const Spell& spell);
-	void setRepresentation(const String& string);
+	//void setRepresentation(const String& string);
 
 	size_t getPower() const;
 	size_t getMana() const;
@@ -31,5 +34,5 @@ public:
 	const Weapon& getWeapon() const;
 	const Optional<Armour>& getArmour() const;
 	const Spell& getSpell() const;
-	const String& getRepresentation() const;
+	//const String& getRepresentation() const;
 };

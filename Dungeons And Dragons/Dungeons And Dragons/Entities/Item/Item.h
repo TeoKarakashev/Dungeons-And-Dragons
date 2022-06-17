@@ -6,6 +6,7 @@ class Item {
 	size_t percentIncrease;
 
 public:
+
 	Item(const String& name, size_t percent);
 
 	const String& getName() const;

@@ -29,6 +29,13 @@
     <ClCompile Include="Entities\Hero\Inventory\Inventory.cpp" />
     <ClCompile Include="Entities\Item\Item.cpp" />
     <ClCompile Include="Entities\Hero\Hero.cpp" />
+    <ClCompile Include="Entities\Item\Weapon\Weapon.cpp" />
+    <ClCompile Include="Entities\Item\Spell\Spell.cpp" />
+    <ClCompile Include="Entities\Item\Armour\Armour.cpp" />
+    <ClCompile Include="Entities\Hero\Human\Human.cpp" />
+    <ClCompile Include="Entities\Hero\Warrior\Warrior.cpp" />
+    <ClCompile Include="Entities\Hero\Wizard\Wizard.cpp" />
+    <ClCompile Include="Entities\Hero\HeroContainer\HeroContainer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Maze\MazeGenerator\MazeGenerator.h" />
@@ -43,5 +50,11 @@
     <ClInclude Include="Entities\Item\Item.h" />
     <ClInclude Include="Entities\Item\Weapon\Weapon.h" />
     <ClInclude Include="Entities\Hero\Hero.h" />
+    <ClInclude Include="Entities\Item\Spell\Spell.h" />
+    <ClInclude Include="Entities\Item\Armour\Armour.h" />
+    <ClInclude Include="Entities\Hero\Human\Human.h" />
+    <ClInclude Include="Entities\Hero\Warrior\Warrior.h" />
+    <ClInclude Include="Entities\Hero\Wizard\Wizard.h" />
+    <ClInclude Include="Entities\Hero\HeroContainer\HeroContainer.h" />
   </ItemGroup>
 </Project>

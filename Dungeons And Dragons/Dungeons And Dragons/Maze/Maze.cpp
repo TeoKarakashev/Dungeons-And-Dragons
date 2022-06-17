@@ -96,7 +96,11 @@ void Maze::generateMaze(unsigned width, unsigned height) {
 	generateMonsters();
 }
 
-bool Maze::isOnTheExit() {
+void Maze::setHero(const Hero& hero) {
+	heroEntity.addHero(hero);
+}
+
+bool Maze::isOnTheExit() const {
 	return previousStateOfCurrentHeroPosition == 'E';
 }
 
@@ -140,7 +144,7 @@ void Maze::visualizeCurrentState() const {
 	visualizeMaze();
 	switch (previousStateOfCurrentHeroPosition) {
 	case 'E':
-		std::cout << "Congratulations! You made your way to the end of the current level! Do you want to procced? Press 1";
+		std::cout << "Congratulations! You made your way to the end of the current level! Do you want to procced? Press q";
 		break;
 	case 'M':
 		std::cout << "Ooh, a monster";

@@ -1,7 +1,9 @@
 #include "Inventory.h"
 
-Inventory::Inventory() {
+Inventory::Inventory() : armour(), weapon("normal sword", 20), spell("fire ball", 20) {
+}
 
+Inventory::Inventory(const Armour& armour, const Weapon& weapon, const Spell& spell) : armour(armour), weapon(weapon), spell(spell) {
 }
 
 void Inventory::setArmour(const Armour& armour) {

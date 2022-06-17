@@ -10,6 +10,7 @@ class Inventory {
 
 public:
 	Inventory();
+	Inventory(const Armour& armour, const Weapon& weapon, const Spell& spell);
 	
 	void setArmour(const Armour& armour);
 	void setWeapon(const Weapon& weapon);
