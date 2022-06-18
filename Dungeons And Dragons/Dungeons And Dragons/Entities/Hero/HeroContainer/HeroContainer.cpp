@@ -29,3 +29,8 @@ const Hero* HeroContainer::getHero() const
 {
 	return hero;
 }
+
+Hero* HeroContainer::getHero()
+{
+	return hero;
+}

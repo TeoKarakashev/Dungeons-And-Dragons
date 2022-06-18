@@ -16,7 +16,6 @@ void Engine::createhero(Maze& maze) {
 	int ch;
 	std::cin >> ch;
 		if (ch == 1) {
-			std::cout<<"yes";
 			Human human;
 			maze.setHero(human);
 		}
@@ -69,6 +68,11 @@ void Engine::run() {
 				maze.visualizeCurrentState();
 			}
 			break;
+		case 'e':
+			if (maze.isOnItem()) {
+				maze.pickUpItem();
+				maze.visualizeCurrentState();
+			}
 		default:
 			break;
 		}

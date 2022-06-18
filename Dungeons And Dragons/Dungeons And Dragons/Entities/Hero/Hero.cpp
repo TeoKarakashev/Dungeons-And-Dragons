@@ -3,14 +3,16 @@
 Hero::Hero(size_t power, size_t mana, size_t health) {
 	this->power = power;
 	this->mana = mana;
-	this->health = health;
+	this->maxHealth = health;
+	this->currentHealth = health;
 	this->level = 1;
 }
 
 Hero::Hero(size_t power, size_t mana, size_t health, size_t level, const Inventory& inventory /*const String& representation*/) {
 	this->power = power;
 	this->mana = mana;
-	this->health = health;
+	this->maxHealth = health;
+	this->currentHealth = health;
 	this->level = level;
 	this->inventory = inventory;
 }
@@ -24,7 +26,7 @@ void Hero::setMana(size_t mana) {
 }
 
 void Hero::setHealth(size_t health) {
-	this->health = health;
+	this->maxHealth = health;
 }
 
 void Hero::setLevel(size_t level) {
@@ -47,10 +49,19 @@ void Hero::setSpell(const Spell& spell) {
 //	this->representation = path;
 //}
 
+void Hero::levelUp(size_t powerIncrease, size_t manaIncrease, size_t healthIncrease) {
+	level++;
+	maxHealth = healthIncrease;
+	currentHealth = maxHealth;
+	mana = manaIncrease;
+	power = powerIncrease;
+}
+
 size_t Hero::getPower() const
 {
 	return power;
 }
+
 
 size_t Hero::getMana() const
 {
@@ -59,7 +70,7 @@ size_t Hero::getMana() const
 
 size_t Hero::getHealth() const
 {
-	return health;
+	return maxHealth;
 }
 
 size_t Hero::getLevel() const

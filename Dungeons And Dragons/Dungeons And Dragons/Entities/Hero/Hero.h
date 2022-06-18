@@ -6,7 +6,8 @@
 class Hero {
 	size_t power;
 	size_t mana;
-	size_t health;
+	size_t maxHealth;
+	size_t currentHealth;
 	size_t level;
 	Inventory inventory;
 	//String representation;
@@ -26,6 +27,8 @@ public:
 	void setArmour(const Armour& armour);
 	void setSpell(const Spell& spell);
 	//void setRepresentation(const String& string);
+
+	void levelUp(size_t powerIncrease, size_t ManaIncrease, size_t healthIncrease);
 
 	size_t getPower() const;
 	size_t getMana() const;

@@ -28,6 +28,7 @@ public:
 	E removeAt(int index);
 	bool remove(const E& e);
 	void replaceAt(int index, const E& e);
+	void clear();
 	E& operator[](int index);
 	E operator[](int index) const;
 };
@@ -196,6 +197,11 @@ inline void ArrayList<E>::replaceAt(int index, const E& e) {
 		throw std::exception("Invalid index");
 	}
 	data[index] = e;
+}
+
+template<typename E>
+inline void ArrayList<E>::clear() {
+	size = 0;
 }
 
 template<typename E>

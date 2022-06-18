@@ -27,9 +27,8 @@ bool Maze::isValidMove(int x, int y)
 }
 
 void Maze::generateMonsters() {
-	srand(time(0));
 	int count = 0;
-	while (count <= currentLevel ) {
+	while (count <= currentLevel) {
 		int widthCord = (rand() % (width - 2)) + 1;
 		int heightCord = (rand() % (height - 2)) + 1;
 		if (grid[heightCord][widthCord] == ' ') {
@@ -43,7 +42,9 @@ void Maze::generateMonsters() {
 }
 
 void Maze::generateTreasures() {
-	srand(time(0));
+	items.clear();
+	itemsCoordinates.clear();
+	itemTypes.clear();
 	int count = 0;
 	while (count <= currentLevel) {
 		int widthCord = (rand() % (width - 2)) + 1;
@@ -52,10 +53,59 @@ void Maze::generateTreasures() {
 			grid[heightCord][widthCord] = 'T';
 			Pair<int, int> cords;
 			cords.set_pair(heightCord, widthCord);
-			treasuresCoordiantes.add(cords);
+			generateRandomItem();
+			itemsCoordinates.add(cords);
 			count++;
 		}
 	}
+}
+
+void Maze::levelUpHero() {
+	system("cls");
+	int max = 30;
+	std::cout << "You get 30 points for leveling up, use them wisely:" << std::endl;
+	std::cout << "Eneter power points: ";
+	int power;
+	std::cin >> power;
+	std::cout << "Eneter mana points: ";
+	int mana;
+	std::cin >> mana;
+	std::cout << "Eneter health points: ";
+	int health;
+	std::cin >> health;
+	if (power + mana + health != 30) {
+		std::cout << "exactly 30 points for your stats! " << std::endl;
+		while (power + mana + health != 30){
+			std::cout << "Eneter power points: ";
+			std::cin >> power;
+			std::cout << "Eneter mana points: ";
+			std::cin >> mana;
+			std::cout << "Eneter health points: ";
+			std::cin >> health;
+		}
+	}
+	heroEntity.getHero()->levelUp(power, mana, health);
+
+}
+
+void Maze::generateRandomItem() {
+	int itemType = (rand() % 3) + 1;
+	int itemIndex = (rand() % 5);
+	itemTypes.add(itemType);
+	int percentIncrease = 25 + (5 * (currentLevel - 1));
+	if (itemType == ARMOUR_INDEX) {
+		String name = armourNames[itemIndex];
+		items.addItem(Armour(name, percentIncrease));
+	}
+	else if (itemType == SPELL_INDEX) {
+		String name = spellNames[itemIndex];
+		items.addItem(Spell(name, percentIncrease));
+	}
+	else {
+		String name = weaponNames[itemIndex];
+		items.addItem(Weapon(name, percentIncrease));
+	}
+
 }
 
 Maze::Maze() {
@@ -83,6 +133,7 @@ Maze::~Maze() {
 }
 
 void Maze::generateMaze(unsigned width, unsigned height) {
+	srand(time(0));
 	this->width = width;
 	this->height = height;
 	MazeGenerator generator;
@@ -96,6 +147,20 @@ void Maze::generateMaze(unsigned width, unsigned height) {
 	generateMonsters();
 }
 
+int Maze::findCurrentTresure() const {
+	for (int i = 0; i < itemsCoordinates.Size(); i++) {
+		if ((heroCoordinates.c_first() == itemsCoordinates[i].c_first()) && (heroCoordinates.c_second() == itemsCoordinates[i].c_second())) {
+			return i;
+		}
+	}
+	return -1;
+}
+
+bool Maze::isOnItem() const
+{
+	return previousStateOfCurrentHeroPosition == 'T';
+}
+
 void Maze::setHero(const Hero& hero) {
 	heroEntity.addHero(hero);
 }
@@ -106,6 +171,9 @@ bool Maze::isOnTheExit() const {
 
 void Maze::generateLevel() {
 	currentLevel++;
+	if (currentLevel > 1) {
+	levelUpHero();
+	}
 	if (currentLevel == 1) {
 		generateMaze(11, 11);
 	}
@@ -113,7 +181,7 @@ void Maze::generateLevel() {
 		generateMaze(15, 11);
 	}
 	else {
-		
+
 		if ((width += WIDTH_INCREASE) % 2 == 0) {
 			width++;
 		};
@@ -141,6 +209,7 @@ bool Maze::moveHero(int x, int y) {
 }
 
 void Maze::visualizeCurrentState() const {
+	int currentTreasueIndex;
 	visualizeMaze();
 	switch (previousStateOfCurrentHeroPosition) {
 	case 'E':
@@ -150,11 +219,62 @@ void Maze::visualizeCurrentState() const {
 		std::cout << "Ooh, a monster";
 		break;
 	case 'T':
-		std::cout << "Ooh, a treasure";
+		currentTreasueIndex = findCurrentTresure();
+		std::cout << "Ooh, you found a treasure" << std::endl;
+		std::cout << "Name: " << items.getAt(currentTreasueIndex)->getName() << std::endl;
+		std::cout << "Percentage bonus: " << items.getAt(currentTreasueIndex)->getPercentIncrease() << std::endl;
+		if (itemTypes[currentTreasueIndex] == ARMOUR_INDEX) {
+			try {
+				std::cout << "Your current Armour of this type is: " << heroEntity.getHero()->getArmour().getData().getName() << std::endl;
+				std::cout << "Current percentage bonus: " << heroEntity.getHero()->getArmour().getData().getPercentIncrease() << std::endl;
+			}
+			catch (std::logic_error) {
+				std::cout << " You don't have an armour currently" << std::endl;
+			}
+		}
+		else if (itemTypes[currentTreasueIndex] == WEAPON_INDEX) {
+			std::cout << "Your current weapon of this type is: " << heroEntity.getHero()->getWeapon().getName() << std::endl;
+			std::cout << "Current percentage bonus: " << heroEntity.getHero()->getWeapon().getPercentIncrease() << std::endl;
+		}
+		else {
+			std::cout << "Your current spell of this type is: " << heroEntity.getHero()->getSpell().getName() << std::endl;
+			std::cout << "Current percentage bonus: " << heroEntity.getHero()->getSpell().getPercentIncrease() << std::endl;
+		}
+		std::cout << "Press e to pick it up" << std::endl;
 		break;
 	default:
 		break;
 	}
+}
+
+bool Maze::pickUpItem() {
+	int currentTreasueIndex = findCurrentTresure();
+	if (itemTypes[currentTreasueIndex] == ARMOUR_INDEX) {
+		Armour a(items.getAt(currentTreasueIndex)->getName(), items.getAt(currentTreasueIndex)->getPercentIncrease());
+		try {
+			items.setAt(currentTreasueIndex, heroEntity.getHero()->getArmour().getData().getName(),
+				heroEntity.getHero()->getArmour().getData().getPercentIncrease());
+			heroEntity.getHero()->setArmour(a);
+		}
+		catch (std::logic_error) {
+			heroEntity.getHero()->setArmour(a);
+			previousStateOfCurrentHeroPosition = ' ';
+		}
+	}
+	else if (itemTypes[currentTreasueIndex] == WEAPON_INDEX) {
+		Weapon w(items.getAt(currentTreasueIndex)->getName(), items.getAt(currentTreasueIndex)->getPercentIncrease());
+		items.setAt(currentTreasueIndex, heroEntity.getHero()->getWeapon().getName(),
+			heroEntity.getHero()->getWeapon().getPercentIncrease());
+		heroEntity.getHero()->setWeapon(w);
+
+	}
+	else {
+		Spell s(items.getAt(currentTreasueIndex)->getName(), items.getAt(currentTreasueIndex)->getPercentIncrease());
+		items.setAt(currentTreasueIndex, heroEntity.getHero()->getSpell().getName(),
+			heroEntity.getHero()->getSpell().getPercentIncrease());
+		heroEntity.getHero()->setSpell(s);
+	}
+	return true;
 }
 
 void Maze::visualizeMaze() const {

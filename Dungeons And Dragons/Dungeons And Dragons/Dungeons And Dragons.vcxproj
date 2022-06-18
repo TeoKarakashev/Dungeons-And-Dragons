@@ -28,6 +28,7 @@
     <ClCompile Include="Entities\Hero\Wizard\Wizard.cpp" />
     <ClCompile Include="Entities\Item\Armour\Armour.cpp" />
     <ClCompile Include="Entities\Item\Item.cpp" />
+    <ClCompile Include="Entities\Item\ItemCollection\ItemCollection.cpp" />
     <ClCompile Include="Entities\Item\Spell\Spell.cpp" />
     <ClCompile Include="Entities\Item\Weapon\Weapon.cpp" />
     <ClCompile Include="Helpers\String\String.cpp" />
@@ -45,6 +46,7 @@
     <ClInclude Include="Entities\Hero\Wizard\Wizard.h" />
     <ClInclude Include="Entities\Item\Armour\Armour.h" />
     <ClInclude Include="Entities\Item\Item.h" />
+    <ClInclude Include="Entities\Item\ItemCollection\ItemCollection.h" />
     <ClInclude Include="Entities\Item\Spell\Spell.h" />
     <ClInclude Include="Entities\Item\Weapon\Weapon.h" />
     <ClInclude Include="Entities\Monster\Monster.h" />

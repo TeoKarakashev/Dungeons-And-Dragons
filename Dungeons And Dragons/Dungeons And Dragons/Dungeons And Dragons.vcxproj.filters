@@ -36,6 +36,7 @@
     <ClCompile Include="Entities\Hero\Warrior\Warrior.cpp" />
     <ClCompile Include="Entities\Hero\Wizard\Wizard.cpp" />
     <ClCompile Include="Entities\Hero\HeroContainer\HeroContainer.cpp" />
+    <ClCompile Include="Entities\Item\ItemCollection\ItemCollection.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Maze\MazeGenerator\MazeGenerator.h" />
@@ -56,5 +57,6 @@
     <ClInclude Include="Entities\Hero\Warrior\Warrior.h" />
     <ClInclude Include="Entities\Hero\Wizard\Wizard.h" />
     <ClInclude Include="Entities\Hero\HeroContainer\HeroContainer.h" />
+    <ClInclude Include="Entities\Item\ItemCollection\ItemCollection.h" />
   </ItemGroup>
 </Project>

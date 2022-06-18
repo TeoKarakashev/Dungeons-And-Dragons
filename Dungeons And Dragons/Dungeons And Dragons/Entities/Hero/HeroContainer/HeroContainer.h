@@ -15,4 +15,5 @@ public:
 
 	void addHero(const Hero& hero);
 	const Hero* getHero() const;
+	 Hero* getHero();
 };

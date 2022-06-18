@@ -4,6 +4,7 @@
 class Item {
 	String name;
 	size_t percentIncrease;
+	//unsigned level;
 
 public:
 
@@ -11,9 +12,11 @@ public:
 
 	const String& getName() const;
 	size_t getPercentIncrease() const;
+	//size_t getLevel() const;
 
 	void setName(const String& name);
 	void setPercent(size_t percent);
-
+	//void setLevel(unsigned level);
+	virtual Item* clone() const = 0;
 	virtual ~Item() = default;
 };

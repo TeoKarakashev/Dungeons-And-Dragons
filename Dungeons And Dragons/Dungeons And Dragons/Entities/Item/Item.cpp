@@ -12,6 +12,10 @@ size_t Item::getPercentIncrease() const {
     return percentIncrease;
 }
 
+//size_t Item::getLevel() const {
+//    return level;
+//}
+
 void Item::setName(const String& name) {
     this->name = name;
 }
@@ -19,3 +23,7 @@ void Item::setName(const String& name) {
 void Item::setPercent(size_t percent){
     this->percentIncrease = percent;
 }
+
+//void Item::setLevel(unsigned level){
+//    this->level = level;
+//}
