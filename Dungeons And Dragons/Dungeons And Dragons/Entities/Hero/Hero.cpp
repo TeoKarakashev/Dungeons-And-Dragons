@@ -29,6 +29,10 @@ void Hero::setHealth(size_t health) {
 	this->maxHealth = health;
 }
 
+void Hero::setCurrentHealth(size_t health) {
+	currentHealth = health;
+}
+
 void Hero::setLevel(size_t level) {
 	this->level = level;
 }
@@ -71,6 +75,11 @@ size_t Hero::getMana() const
 size_t Hero::getHealth() const
 {
 	return maxHealth;
+}
+
+size_t Hero::getCurrentHealth() const
+{
+	return currentHealth;
 }
 
 size_t Hero::getLevel() const

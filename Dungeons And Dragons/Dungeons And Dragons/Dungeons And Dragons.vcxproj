@@ -31,12 +31,14 @@
     <ClCompile Include="Entities\Item\ItemCollection\ItemCollection.cpp" />
     <ClCompile Include="Entities\Item\Spell\Spell.cpp" />
     <ClCompile Include="Entities\Item\Weapon\Weapon.cpp" />
+    <ClCompile Include="Entities\Monster\Monster.cpp" />
     <ClCompile Include="Helpers\String\String.cpp" />
     <ClCompile Include="Maze\Maze.cpp" />
     <ClCompile Include="Maze\MazeGenerator\MazeGenerator.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Battle\Battle.h" />
     <ClInclude Include="Engine\Engine.h" />
     <ClInclude Include="Entities\Hero\Hero.h" />
     <ClInclude Include="Entities\Hero\HeroContainer\HeroContainer.h" />

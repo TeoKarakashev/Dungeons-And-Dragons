@@ -22,6 +22,7 @@ public:
 	void setPower(size_t power);
 	void setMana(size_t mana);
 	void setHealth(size_t health);
+	void setCurrentHealth(size_t health);
 	void setLevel(size_t level);
 	void setWeapon(const Weapon& weapon);
 	void setArmour(const Armour& armour);
@@ -33,6 +34,7 @@ public:
 	size_t getPower() const;
 	size_t getMana() const;
 	size_t getHealth() const;
+	size_t getCurrentHealth() const;
 	size_t getLevel() const;
 	const Weapon& getWeapon() const;
 	const Optional<Armour>& getArmour() const;
