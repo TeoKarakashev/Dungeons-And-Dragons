@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Battle\Battle.cpp" />
     <ClCompile Include="Engine\Engine.cpp" />
     <ClCompile Include="Entities\Hero\Hero.cpp" />
     <ClCompile Include="Entities\Hero\HeroContainer\HeroContainer.cpp" />

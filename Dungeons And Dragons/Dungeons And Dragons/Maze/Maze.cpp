@@ -32,6 +32,13 @@ void Maze::generateMonsters() {
 		int widthCord = (rand() % (width - 2)) + 1;
 		int heightCord = (rand() % (height - 2)) + 1;
 		if (grid[heightCord][widthCord] == ' ') {
+			Monster monster;
+			monster.setHealth(50 + (10 * (currentLevel - 1)));
+			monster.setCurrentHealth(monster.getHealth());
+			monster.setMana(25 + (10 * (currentLevel - 1)));
+			monster.setPower(25 + (10 * (currentLevel - 1)));
+			monster.setShield(15 + (5 * (currentLevel - 1)));
+			monsters.add(monster);
 			grid[heightCord][widthCord] = 'M';
 			Pair<int, int> cords;
 			cords.set_pair(heightCord, widthCord);
@@ -114,19 +121,20 @@ Maze::Maze() {
 	grid = nullptr;
 	previousStateOfCurrentHeroPosition = ' ';
 	currentLevel = 0;
+	visualizeMazeData = false;
 }
 
-Maze::Maze(const Maze& other) {
-	copyFrom(other);
-}
+//Maze::Maze(const Maze& other) {
+//	copyFrom(other);
+//}
 
-Maze& Maze::operator=(const Maze& other) {
-	if (this != &other) {
-		free();
-		copyFrom(other);
-	}
-	return *this;
-}
+//Maze& Maze::operator=(const Maze& other) {
+//	if (this != &other) {
+//		free();
+//		copyFrom(other);
+//	}
+//	return *this;
+//}
 
 Maze::~Maze() {
 	free();
@@ -154,6 +162,32 @@ int Maze::findCurrentTresure() const {
 		}
 	}
 	return -1;
+}
+
+int Maze::findCurrentMonster() const
+{
+	for (int i = 0; i < monstersCoordiantes.Size(); i++) {
+		if ((heroCoordinates.c_first() == monstersCoordiantes[i].c_first()) && (heroCoordinates.c_second() == monstersCoordiantes[i].c_second())) {
+			return i;
+		}
+	}
+	return -1;
+	return 0;
+}
+
+void Maze::visualizeExtraInfo() const {
+	std::cout << std::endl;
+	std::cout << "Hero max health:" << heroEntity.getHero()->getHealth() << std::endl;
+	std::cout << "Hero current health:" << heroEntity.getHero()->getCurrentHealth() << std::endl;
+	std::cout << "Hero mana:" << heroEntity.getHero()->getMana() << std::endl;
+	std::cout << "Hero weapon power:" << heroEntity.getHero()->getWeapon().getPercentIncrease() << std::endl;
+	std::cout << "Hero spell power:" << heroEntity.getHero()->getSpell().getPercentIncrease() << std::endl;
+	try {
+		std::cout << "Hero armour shield:" << heroEntity.getHero()->getArmour().getData().getPercentIncrease()<<"%" << std::endl;
+	}
+	catch (std::logic_error) {
+		std::cout << "Hero armour shield : 0%" << std::endl;
+	}
 }
 
 bool Maze::isOnItem() const
@@ -199,6 +233,7 @@ const Pair<int, int> Maze::getHeroCords() const {
 
 bool Maze::moveHero(int x, int y) {
 	if (isValidMove(x, y)) {
+		healthRegen();
 		grid[heroCoordinates.c_first()][heroCoordinates.c_second()] = previousStateOfCurrentHeroPosition;
 		heroCoordinates.set_pair(x, y);
 		previousStateOfCurrentHeroPosition = grid[x][y];
@@ -209,14 +244,32 @@ bool Maze::moveHero(int x, int y) {
 }
 
 void Maze::visualizeCurrentState() const {
-	int currentTreasueIndex;
+	int currentTreasueIndex = -1;
+	int currentMonsterIndex = -1;
 	visualizeMaze();
 	switch (previousStateOfCurrentHeroPosition) {
 	case 'E':
 		std::cout << "Congratulations! You made your way to the end of the current level! Do you want to procced? Press q";
+		if (visualizeMazeData) {
+			visualizeExtraInfo();
+		}
 		break;
 	case 'M':
-		std::cout << "Ooh, a monster";
+		currentMonsterIndex = findCurrentMonster();
+		if (heroEntity.getHero()->getCurrentHealth() < monsters[currentMonsterIndex].getHealth()) {
+			std::cout << "Ooh you died!";
+			exit(1);
+		}
+		/*Monster monster = monsters[currentMonsterIndex];
+		beginBattle(monsters[currentMonsterIndex]); */
+		std::cout << "Monster health:"<<monsters[currentMonsterIndex].getHealth()<<std::endl;
+		std::cout << "Monster power:"<<monsters[currentMonsterIndex].getPower() << std::endl;
+		std::cout << "Monster Mana:"<<monsters[currentMonsterIndex].getMana() << std::endl;
+		std::cout << "Monster Shiled:"<<monsters[currentMonsterIndex].getShield()<<"%" << std::endl;
+
+		if (visualizeMazeData) {
+			visualizeExtraInfo();
+		}
 		break;
 	case 'T':
 		currentTreasueIndex = findCurrentTresure();
@@ -225,7 +278,7 @@ void Maze::visualizeCurrentState() const {
 		std::cout << "Percentage bonus: " << items.getAt(currentTreasueIndex)->getPercentIncrease() << std::endl;
 		if (itemTypes[currentTreasueIndex] == ARMOUR_INDEX) {
 			try {
-				std::cout << "Your current Armour of this type is: " << heroEntity.getHero()->getArmour().getData().getName() << std::endl;
+				std::cout << "Your current Armour is: " << heroEntity.getHero()->getArmour().getData().getName() << std::endl;
 				std::cout << "Current percentage bonus: " << heroEntity.getHero()->getArmour().getData().getPercentIncrease() << std::endl;
 			}
 			catch (std::logic_error) {
@@ -233,16 +286,22 @@ void Maze::visualizeCurrentState() const {
 			}
 		}
 		else if (itemTypes[currentTreasueIndex] == WEAPON_INDEX) {
-			std::cout << "Your current weapon of this type is: " << heroEntity.getHero()->getWeapon().getName() << std::endl;
+			std::cout << "Your current weapon is: " << heroEntity.getHero()->getWeapon().getName() << std::endl;
 			std::cout << "Current percentage bonus: " << heroEntity.getHero()->getWeapon().getPercentIncrease() << std::endl;
 		}
 		else {
-			std::cout << "Your current spell of this type is: " << heroEntity.getHero()->getSpell().getName() << std::endl;
+			std::cout << "Your current spell is: " << heroEntity.getHero()->getSpell().getName() << std::endl;
 			std::cout << "Current percentage bonus: " << heroEntity.getHero()->getSpell().getPercentIncrease() << std::endl;
 		}
 		std::cout << "Press e to pick it up" << std::endl;
+		if (visualizeMazeData) {
+			visualizeExtraInfo();
+		}
 		break;
 	default:
+		if (visualizeMazeData) {
+			visualizeExtraInfo();
+		}
 		break;
 	}
 }
@@ -275,6 +334,25 @@ bool Maze::pickUpItem() {
 		heroEntity.getHero()->setSpell(s);
 	}
 	return true;
+}
+
+void Maze::beginBattle(Monster& monster) const{
+	Battle battle;
+	battle.fight(heroEntity.getHero(), monster);
+}
+
+void Maze::toggleExtraData() {
+	if (visualizeMazeData) {
+		visualizeMazeData = false;
+	}
+	else {
+
+	visualizeMazeData = true;
+	}
+}
+
+void Maze::healthRegen() {
+	heroEntity.getHero()->healthRegen();
 }
 
 void Maze::visualizeMaze() const {

@@ -55,10 +55,10 @@ void Hero::setSpell(const Spell& spell) {
 
 void Hero::levelUp(size_t powerIncrease, size_t manaIncrease, size_t healthIncrease) {
 	level++;
-	maxHealth = healthIncrease;
+	maxHealth += healthIncrease;
 	currentHealth = maxHealth;
-	mana = manaIncrease;
-	power = powerIncrease;
+	mana += manaIncrease;
+	power += powerIncrease;
 }
 
 size_t Hero::getPower() const
@@ -97,6 +97,12 @@ const Optional<Armour>& Hero::getArmour() const {
 
 const Spell& Hero::getSpell() const {
 	return inventory.getSpell();
+}
+
+void Hero::healthRegen() {
+	if (currentHealth < maxHealth) {
+		currentHealth++;
+	}
 }
 
 //const String& Hero::getRepresentation() const {

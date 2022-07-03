@@ -39,5 +39,6 @@ public:
 	const Weapon& getWeapon() const;
 	const Optional<Armour>& getArmour() const;
 	const Spell& getSpell() const;
+	void healthRegen();
 	//const String& getRepresentation() const;
 };

@@ -42,9 +42,13 @@ void Engine::run() {
 		int ch = _getch();
 		switch (ch)
 		{
+		case 'h':
+			maze.toggleExtraData();
+			break;
 		case 'w':
 			if (maze.moveHero(heroCords.c_first() - 1, heroCords.c_second())) {
 				maze.visualizeCurrentState();
+
 			}
 			break;
 		case 'a':

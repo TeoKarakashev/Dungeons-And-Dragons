@@ -4,6 +4,8 @@
 #include "../Helpers/Pair/Pair.hpp"
 #include "../Helpers/ArrayList/ArrayList.hpp"
 #include "../Entities/Item/ItemCollection/ItemCollection.h"
+#include "../Entities/Monster/Monster.h"
+#include "../Battle/Battle.h"
 #define WIDTH_INCREASE 5
 #define HEIGHT_INCREASE 3
 #define ARMOUR_INDEX 1
@@ -26,6 +28,7 @@ class Maze {
 	unsigned currentLevel;
 	char** grid;
 	char previousStateOfCurrentHeroPosition;
+	bool visualizeMazeData;
 
 	HeroContainer heroEntity;
 	Pair<int, int> heroCoordinates;
@@ -35,6 +38,7 @@ class Maze {
 	ArrayList<int> itemTypes;
 
 	ArrayList<Pair<int, int>> monstersCoordiantes;
+	ArrayList<Monster> monsters;
 
 	void free();
 	void copyFrom(const Maze& other);
@@ -46,10 +50,12 @@ class Maze {
 	void visualizeMaze() const;
 	void generateMaze(unsigned height, unsigned width);
 	int findCurrentTresure() const;
+	int findCurrentMonster() const;
+	void visualizeExtraInfo() const;
 public:
 	Maze();
-	Maze(const Maze& other);
-	Maze& operator=(const Maze& other);
+	Maze(const Maze& other) = delete;
+	Maze& operator=(const Maze& other) = delete;
 	~Maze();
 
 
@@ -61,4 +67,7 @@ public:
 	bool moveHero(int x, int y);
 	void visualizeCurrentState() const;
 	bool pickUpItem();
+	void beginBattle(Monster& monster) const;
+	void toggleExtraData();
+	void healthRegen();
 };
